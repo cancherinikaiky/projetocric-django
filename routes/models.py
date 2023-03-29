@@ -4,7 +4,7 @@ import requests
 
 
 class Route(models.Model):
-    name = models.CharField(max_length=250)
+    nome = models.CharField(max_length=250)
     id_route = models.CharField(max_length=50, unique=True)
     polilyne = models.CharField(max_length=5000,blank=True, null=True)
 

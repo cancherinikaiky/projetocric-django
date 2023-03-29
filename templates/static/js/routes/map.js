@@ -1,3 +1,14 @@
+const url_python = 'http://127.0.0.1:8000/api/routes/'
+    fetch(url_python)
+    .then(res => res.json())
+    .then(rotas => {
+        rotas.forEach(e => {
+            console.log(e.polilyne
+                )
+        })
+    })
+
+
 const setRoutesOnMap = (dataRoutes) => {
     dataRoutes.forEach(e => {
         let map = L.map(e.map, {scrollWheelZoom: false}).setView([e.view[0], e.view[1]], 12);
