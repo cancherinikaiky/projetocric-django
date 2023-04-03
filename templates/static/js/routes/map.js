@@ -3,8 +3,7 @@ const url_python = 'http://127.0.0.1:8000/api/routes/'
     .then(res => res.json())
     .then(rotas => {
         rotas.forEach(e => {
-            console.log(e.polilyne
-                )
+            console.log(e.id_route)
         })
     })
 
