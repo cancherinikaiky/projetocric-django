@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from routes.models import Route
+from cities.models.route import Route
 from .serializers import RouteSerializer
 
 class RouteViewSet(viewsets.ModelViewSet):
