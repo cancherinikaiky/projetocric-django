@@ -2,12 +2,12 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from rest_framework import routers
-from api.views import RouteViewSet
+# from rest_framework import routers
+# from api.views import RouteViewSet
 
-routes = routers.DefaultRouter()
+# routes = routers.DefaultRouter()
 
-routes.register(r'routes', RouteViewSet)
+# routes.register(r'routes', RouteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -17,5 +17,5 @@ urlpatterns = [
     path('manual/', include('manual.urls')),
     path('contato/', include('contact.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include(routes.urls))
+    path('api/', include('api.urls'))
 ]

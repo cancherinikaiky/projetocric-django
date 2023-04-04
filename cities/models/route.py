@@ -8,13 +8,13 @@ class Route(models.Model):
     id_route = models.CharField(max_length=50, unique=True)
     polilyne = models.CharField(max_length=5000,blank=True, null=True)
 
+    def __str__(self) -> str:
+        return self.name
+
 
     # def clean(self):
-    #     api = Api()
-    #     try:
-    #         print('AQUI', api.getRoute(self.id_route))
-    #     except KeyError:
-    #         print("AQUI DEU O ERRO")
+        ...
+
 
     def get_routes(self):
         data = Route.objects.all()
