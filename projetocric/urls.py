@@ -1,13 +1,8 @@
 
 from django.contrib import admin
 from django.urls import path, include
-
-# from rest_framework import routers
-# from api.views import RouteViewSet
-
-# routes = routers.DefaultRouter()
-
-# routes.register(r'routes', RouteViewSet)
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -19,3 +14,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('api.urls'))
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

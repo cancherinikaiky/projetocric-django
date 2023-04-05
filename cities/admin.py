@@ -13,12 +13,14 @@ class RouteAdminForm(forms.ModelForm):
 class RouteAdmin(admin.ModelAdmin):
     list_display = ('id', 'name', 'id_route', 'polilyne')
     list_display_links = ('id', 'name')
+    readonly_fields = ('polilyne',)
 
 
 class CityAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'visible')
-    list_display_links = ('id', 'name')
     form = RouteAdminForm
+    readonly_fields = ('id_map',)
+    list_display = ('id', 'name', 'id_map', 'visible')
+    list_display_links = ('id', 'name')
 
 
 admin.site.register(Route, RouteAdmin)

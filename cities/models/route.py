@@ -11,11 +11,6 @@ class Route(models.Model):
     def __str__(self) -> str:
         return self.name
 
-
-    # def clean(self):
-        ...
-
-
     def get_routes(self):
         data = Route.objects.all()
         return data
