@@ -23,12 +23,9 @@ from itertools import chain
 #         # serializer2 = CitySerializer(cities, many=True)
 #         return Response({'routes': serializer1.data})
 
-class ModelsAPIVIEW(generics.ListAPIView):
-    def get_queryset(self):
-        model1 = Route.objects.all()    
-        model2 = City.objects.all()
-        queryset = list(chain(model1, model2))
-        return queryset
+class CityList(generics.ListAPIView):
+    queryset = City.objects.all()
+    serializer_class = CitySerializer
 
     # queryset = Route.objects.all()
     # serializer_class = RouteSerializer

@@ -8,8 +8,7 @@ class RouteSerializer(serializers.ModelSerializer):
         fields = ('id', 'id_route', 'polilyne')
 
 class CitySerializer(serializers.ModelSerializer):
-    routes = RouteSerializer(many=True, read_only = True)
-
+    routes = RouteSerializer(many=True)
     class Meta:
-        model: City
+        model =  City
         fields = ('id', 'name', 'routes')

@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import ModelsAPIVIEW
+from .views import CityList
 
 urlpatterns = [
-    path('routes/', ModelsAPIVIEW.as_view()),
+    path('routes/', CityList.as_view()),
 ]
