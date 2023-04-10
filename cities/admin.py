@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Route, City
 from django import forms
-
-class RouteAdminForm(forms.ModelForm):
+    
+class CityAdminForm(forms.ModelForm):
     class Meta:
         model = Route
         fields = '__all__'
@@ -11,16 +11,20 @@ class RouteAdminForm(forms.ModelForm):
         }
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'id_route', 'polilyne')
-    list_display_links = ('id', 'name')
+    list_display = ('id', 'name', 'id_route', 'active', 'polilyne')
+    list_display_links = ('id', 'name', 'id_route', 'polilyne')
     readonly_fields = ('polilyne',)
 
 
 class CityAdmin(admin.ModelAdmin):
-    form = RouteAdminForm
-    readonly_fields = ('id_map',)
-    list_display = ('id', 'name', 'id_map', 'visible')
+    form = CityAdminForm
+    list_display = ('id', 'name', 'visible')
     list_display_links = ('id', 'name')
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "routes":
+            kwargs["queryset"] = Route.objects.filter(active=True)
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
 
 
 admin.site.register(Route, RouteAdmin)
