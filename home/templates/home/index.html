@@ -3,6 +3,11 @@
 
 
 {%block 'content'%}
+
+{% for home in homes %}
+   <p>{{ home.name }}</p>
+{% endfor %}
+
 <section class="image-main">
     <div class="back-img">
       <h1>Rota CRIC</h1>
