@@ -14,10 +14,5 @@ def insert_polilyne(sender, instance, **kwargs):
     except KeyError:
         instance.polilyne = None
 
-# @receiver(pre_save, sender=City)
-# def insert_id_map(sender, instance, **kwargs):
-#     instance.id_map = replace(instance.name)
-#     instance.banner_photo.name = replace(instance.banner_photo.name)
-
 def replace(name):
     return unidecode(name).strip().lower().replace(' ', '_').replace('-', '_')
