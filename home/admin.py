@@ -8,12 +8,9 @@ from django.utils.html import format_html
 
 class HomeAdmin(admin.ModelAdmin):
     list_display = ('id', 'name_city', 'banner_photo_city', 'edit_city_link')
-    list_display_links = ('name_city',)
 
     readonly_fields = ('id', 'name_city', 'banner_photo_city', 'edit_city_link')
 
-    def has_delete_permission(self, request, obj=None):
-        return False
 
     def edit_city_link(self, obj):
          url = reverse('admin:cities_city_change', args=[obj.city.pk])

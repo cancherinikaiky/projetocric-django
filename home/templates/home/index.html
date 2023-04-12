@@ -4,10 +4,6 @@
 
 {%block 'content'%}
 
-{% for home in homes %}
-   <p>{{ home.name }}</p>
-{% endfor %}
-
 <section class="image-main">
     <div class="back-img">
       <h1>Rota CRIC</h1>
@@ -16,7 +12,6 @@
         Carbonífera.</p>
     </div>
   </section>
-
 
   <section class="container-map">
     <div class="title">
@@ -77,12 +72,21 @@
 
   <section class="container-cities" id="cities">
     <div class="container-inside">
-      <div class="container-city" id="arroio-dos-ratos">
+      
+
+      {% for home in homes %}
+
+      <div class="container-city" id="arroio-dos-ratos" style="background-image: url('{{ home.banner_photo_city }}');">
         <div class="content">
           <img src="{% static 'images/images-cities/bike-cities-icon.png'%}" alt="Ícone de uma bicicleta" class="img-logo">
 
           <div class="city-name">
-            <span>A</span>
+
+            {% for letter in home.name_city %}
+                <span>{{ letter }}</span>
+            {% endfor %}
+
+            <!-- <span>A</span>
             <span>R</span>
             <span>R</span>
             <span>O</span>
@@ -97,7 +101,7 @@
             <span>A</span>
             <span>T</span>
             <span>O</span>
-            <span>S</span>
+            <span>S</span> -->
           </div>
 
           <a href="#">
@@ -141,7 +145,10 @@
         </div>
       </div>
 
-      <div class="container-city" id="barao-do-triunfo">
+      {% endfor %}
+
+
+      <!-- <div class="container-city" id="barao-do-triunfo">
         <div class="content">
           <img src="{% static 'images/images-cities/bike-cities-icon.png'%}" alt="Ícone de uma bicicleta" class="img-logo">
 
@@ -599,7 +606,7 @@
             </a>
           </p>
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 

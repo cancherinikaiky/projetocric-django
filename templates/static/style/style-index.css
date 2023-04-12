@@ -208,7 +208,7 @@ section.container-legend div.legend ul li span {
 }
 
 /* CITIES */
-#arroio-dos-ratos {
+/* #arroio-dos-ratos {
     background-image: url(../images/images-cities/arroio-dos-ratos.jpg);
 }
 
@@ -242,7 +242,7 @@ section.container-legend div.legend ul li span {
 
 #vale-verde {
     background-image: url(../images/images-cities/vale-verde.jpeg);
-}
+} */
 
 section.container-cities {
     max-width: 100vw;
