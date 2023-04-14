@@ -7,3 +7,10 @@ class CitySerializer(serializers.ModelSerializer):
     class Meta:
         model = City
         fields = ('id', 'name', 'banner_photo', 'routes')
+
+class CityDetailSerializer(serializers.ModelSerializer):
+    routes = RouteSerializer(many=True)
+
+    class Meta:
+        model = City
+        fields = ('id', 'name', 'routes')
