@@ -72,36 +72,16 @@
 
   <section class="container-cities" id="cities">
     <div class="container-inside">
-      
 
-      {% for home in homes %}
-
-      <div class="container-city" id="arroio-dos-ratos" style="background-image: url('{{ home.banner_photo_city }}');">
+    {% for city in homes %}
+      <div class="container-city" id="arroio-dos-ratos" style="background-image: url('{{ city.city.banner_photo.url }}');">
         <div class="content">
           <img src="{% static 'images/images-cities/bike-cities-icon.png'%}" alt="Ícone de uma bicicleta" class="img-logo">
 
           <div class="city-name">
-
-            {% for letter in home.name_city %}
+            {% for letter in city.city.name %}
                 <span>{{ letter }}</span>
             {% endfor %}
-
-            <!-- <span>A</span>
-            <span>R</span>
-            <span>R</span>
-            <span>O</span>
-            <span>I</span>
-            <span>O</span>
-            <span>-</span>
-            <span>D</span>
-            <span>O</span>
-            <span>S</span>
-            <span>-</span>
-            <span>R</span>
-            <span>A</span>
-            <span>T</span>
-            <span>O</span>
-            <span>S</span> -->
           </div>
 
           <a href="#">
@@ -131,7 +111,7 @@
           </ul>
 
           <p>Saiba mais
-            <a href="{% url 'cidade' post_name=home.name_city %}">
+            <a href="{% url 'city_detail' pk=city.city.id %}">
               <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28Z"
@@ -145,7 +125,7 @@
         </div>
       </div>
 
-      {% endfor %}
+    {% endfor %}
 
 
       <!-- <div class="container-city" id="barao-do-triunfo">
