@@ -6,17 +6,12 @@ from django.dispatch import receiver
 
 
 @receiver(post_save, sender=City)
-def create_home(sender, instance, created, **kwargs):
-    if created and instance.visible:
-        home = Home(city=instance, name_city=instance.name)
-        home.save()
-
-@receiver(post_save, sender=City)
-def update_home(sender,instance, **kwargs):
-    if instance.visible:
-        home = Home.objects.filter(city_id=instance.id).first()
+def update_home(sender, instance, **kwargs):
+    if not instance.visible:
+        home = Home.objects.filter(city=instance).first()
         if home:
-            home.name_city = instance.name
-            home.save()
-        else: 
-            Home.objects.create(city_id=instance.id, name_city=instance.name)
+            home.delete()
+            return
+
+    home, created = Home.objects.get_or_create(city=instance)
+    home.save()
