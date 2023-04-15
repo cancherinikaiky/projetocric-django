@@ -4,7 +4,7 @@ from rest_framework import generics
 from cities.models import Route
 from api.serializers import RouteSerializer
 
-class RoutesMaps(generics.ListAPIView):
+class HomeRoutes(generics.ListAPIView):
     queryset = Route.objects.all()
     serializer_class = RouteSerializer
 
