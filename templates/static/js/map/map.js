@@ -1,6 +1,24 @@
-let map = L.map('map', {scrollWheelZoom: false}).setView([-29.95, -51.64], 12);
+// const setMap = (lat, lng) => {
+//   let map = L.map('map', {scrollWheelZoom: false}).setView([-29.95, -51.64], 12);
+//   return map;
+// }
 
-const my_function = (e) => {
+class Map {
+  constructor() {
+    this.map = null;
+  }
+
+  setMap(lat, lng) {
+    this.map = L.map('map', {scrollWheelZoom: false}).setView([lat, lng], 12);
+  }
+
+  getMap() {
+    return this.map;
+  }
+}
+
+const my_function = (e, map) => {
+
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong>ROTACRIC</strong>',

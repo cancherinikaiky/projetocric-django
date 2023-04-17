@@ -7,4 +7,4 @@ class CityDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = City
-        fields = ('id', 'name', 'routes')
+        fields = ('id', 'name', 'lat', 'lng', 'routes')

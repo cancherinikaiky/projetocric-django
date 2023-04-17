@@ -6,4 +6,4 @@ class CitySerializer(serializers.ModelSerializer):
     routes = RouteSerializer(many=True)
     class Meta:
         model = City
-        fields = ('id', 'name', 'banner_photo', 'routes')
+        fields = ('id', 'name', 'lat', 'lng', 'banner_photo', 'routes')
