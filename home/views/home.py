@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic.list import ListView
-from home.models import Home
+from home.models import CityManager
 from cities.models import City
 
 class PostHome(ListView):
@@ -12,7 +12,7 @@ class PostHome(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['homes'] = Home.objects.all()
+        context['homes'] = CityManager.objects.all()
         return context
 
     # queryset = Home.objects.all()

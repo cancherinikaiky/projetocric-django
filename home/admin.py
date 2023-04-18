@@ -1,11 +1,11 @@
 from django.contrib import admin
-from .models import Home
+from .models import CityManager, Home
 
 from django.urls import reverse
 from django.utils.html import format_html
 
 
-class HomeAdmin(admin.ModelAdmin):
+class CityManagerAdmin(admin.ModelAdmin):
     list_display = ('id', 'city', 'edit_city_link')
 
     def edit_city_link(self, obj):
@@ -15,4 +15,10 @@ class HomeAdmin(admin.ModelAdmin):
     edit_city_link.short_description = 'Editar Cidade'
 
 
+class HomeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name')
+    list_display_links = ('id', 'name')
+
+
+admin.site.register(CityManager, CityManagerAdmin)
 admin.site.register(Home, HomeAdmin)

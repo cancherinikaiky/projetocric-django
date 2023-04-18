@@ -1,6 +1,9 @@
 from django.db import models
-from cities.models import City
 
 class Home(models.Model):
-    id = models.AutoField(primary_key=True)
-    city = models.OneToOneField(City, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    lat = models.CharField(max_length=50, default= -29.95)
+    lng = models.CharField(max_length=50, default= 51.64)
+
+    def __str__(self):
+        return self.name
