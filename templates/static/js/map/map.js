@@ -17,14 +17,15 @@ class Map {
   }
 }
 
-const my_function = (e, map) => {
-
+const addRoutesOnMap = (e, map) => {
+    console.log(e)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong>ROTACRIC</strong>',
                 }).addTo(map);
 
-                var coordinates = L.Polyline.fromEncoded(
+                e.routes.forEach(e => {
+                  var coordinates = L.Polyline.fromEncoded(
                   e.polilyne
                 ).getLatLngs();
 
@@ -36,6 +37,7 @@ const my_function = (e, map) => {
                   opacity: 1,
                   lineJoin: "round",
                 }).addTo(map); 
+                })            
 }
 
 
