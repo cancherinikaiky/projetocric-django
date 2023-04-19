@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from cities.models.city import City
+
+from cities.models import City
 from api.serializers import RouteSerializer
 
 class CityDetailSerializer(serializers.ModelSerializer):

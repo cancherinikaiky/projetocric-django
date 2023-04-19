@@ -1,9 +1,9 @@
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from .models.route import Route
 from .models.api_strava import Api
-from .models.city import City
 from unidecode import unidecode
+
+from .models import Route
 
 @receiver(pre_save, sender=Route)
 def insert_polilyne(sender, instance, **kwargs):

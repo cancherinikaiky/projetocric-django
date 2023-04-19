@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from cities.models import Route
 
 class RouteAdmin(admin.ModelAdmin):

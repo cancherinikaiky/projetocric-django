@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from rest_framework import generics
+
 from api.serializers import CityDetailSerializer
 from cities.models import City
 

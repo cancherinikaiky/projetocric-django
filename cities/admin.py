@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib import admin
+
 from .models import Route, City
-from django import forms
     
 class CityAdminForm(forms.ModelForm):
     class Meta:

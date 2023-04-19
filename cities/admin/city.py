@@ -1,7 +1,7 @@
 from django.contrib import admin
-from cities.models import Route
+
+from cities.models import Route, City
 from .city_form import CityAdminForm
-from cities.models import City
 
 class CityAdmin(admin.ModelAdmin):
     form = CityAdminForm
