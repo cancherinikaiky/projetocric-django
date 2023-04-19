@@ -4,7 +4,7 @@ from django.db import models
 class Route(models.Model):
     name = models.CharField(max_length=250)
     id_route = models.CharField(max_length=50, unique=True)
-    polilyne = models.CharField(max_length=5000,blank=True, null=True)
+    polyline = models.CharField(max_length=5000,blank=True, null=True)
     active = models.BooleanField(default=False)
 
     def __str__(self) -> str:

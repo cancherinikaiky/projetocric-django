@@ -25,7 +25,7 @@ class HomeRoutes(generics.ListAPIView):
                     'id': route.id,
                     'name': route.name,
                     'id_route': route.id_route,
-                    'polilyne': route.polilyne,
+                    'polyline': route.polyline,
                     }
 
                     if route_data not in routes:

@@ -12,9 +12,9 @@ class CityAdminForm(forms.ModelForm):
         }
 
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'id_route', 'active', 'polilyne')
-    list_display_links = ('id', 'name', 'id_route', 'polilyne')
-    readonly_fields = ('polilyne',)
+    list_display = ('id', 'name', 'id_route', 'active', 'polyline')
+    list_display_links = ('id', 'name', 'id_route', 'polyline')
+    readonly_fields = ('polyline',)
 
 
 class CityAdmin(admin.ModelAdmin):

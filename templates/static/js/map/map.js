@@ -1,7 +1,3 @@
-// const setMap = (lat, lng) => {
-//   let map = L.map('map', {scrollWheelZoom: false}).setView([-29.95, -51.64], 12);
-//   return map;
-// }
 
 class Map {
   constructor() {
@@ -18,26 +14,26 @@ class Map {
 }
 
 const addRoutesOnMap = (e, map) => {
-    console.log(e)
+    // console.log(e)
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong>ROTACRIC</strong>',
-                }).addTo(map);
+    }).addTo(map);
 
-                e.routes.forEach(e => {
-                  var coordinates = L.Polyline.fromEncoded(
-                  e.polilyne
-                ).getLatLngs();
+    e.routes.forEach(e => {
+      var coordinates = L.Polyline.fromEncoded(
+      e.polyline
+    ).getLatLngs();
 
-                console.log(coordinates)
+    // console.log(coordinates)
         
-                L.polyline(coordinates, {
-                  color: "red",
-                  weight: 4,
-                  opacity: 1,
-                  lineJoin: "round",
-                }).addTo(map); 
-                })            
+    L.polyline(coordinates, {
+      color: "red",
+      weight: 4,
+      opacity: 1,
+      lineJoin: "round",
+    }).addTo(map); 
+    })            
 }
 
 
