@@ -1,5 +1,4 @@
-
-class Map {
+export class Map {
   constructor() {
     this.map = null;
   }
@@ -11,30 +10,49 @@ class Map {
   getMap() {
     return this.map;
   }
-}
 
-const addRoutesOnMap = (e, map) => {
-    // console.log(e)
+  addRoutes(e) {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
                     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong>ROTACRIC</strong>',
-    }).addTo(map);
+    }).addTo(this.map);
 
     e.routes.forEach(e => {
       var coordinates = L.Polyline.fromEncoded(
       e.polyline
     ).getLatLngs();
-
-    // console.log(coordinates)
         
     L.polyline(coordinates, {
       color: "red",
       weight: 4,
       opacity: 1,
       lineJoin: "round",
-    }).addTo(map); 
-    })            
+    }).addTo(this.map); 
+    })    
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // const setRoutesOnMap = (dataRoutes) => {

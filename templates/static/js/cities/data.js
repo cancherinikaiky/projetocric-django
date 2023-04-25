@@ -1,13 +1,13 @@
+import { Map } from "../map/map.js";
+import { Urls } from "../helpers/urls.js";
 
-var url = window.location.href;
-var cityId = url.match(/\/(\d+)\/?$/)[1];
+const cityId = window.location.href.match(/\/(\d+)\/?$/)[1];
+const url_api = Urls.cities + cityId;
 
-const url_python = `http://127.0.0.1:8000/api/cities/${cityId}`
-    fetch(url_python)
-    .then(res => res.json())
-    .then(e => {
-      // console.log(e)
-      let map = new Map();
-      map.setMap(e['coordinates'].lat, e['coordinates'].lng)
-      addRoutesOnMap(e, map.getMap())
-    })
+fetch(url_api)
+  .then(res => res.json())
+  .then(data => {
+    let map = new Map();
+    map.setMap(data['coordinates'].lat, data['coordinates'].lng);
+    map.addRoutes(data);
+});

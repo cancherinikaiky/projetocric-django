@@ -1,10 +1,10 @@
-const url_python = 'http://127.0.0.1:8000/api/home_cities/'
-    fetch(url_python)
+import { Map } from "../map/map.js";
+import { Urls } from "../helpers/urls.js";
+
+fetch(Urls.home_cities)
     .then(res => res.json())
-    .then(e => {
-        // console.log(e[0]['coordinates'].lat, e[0]['coordinates'].lng)
-        // console.log(e[0].routes)
+    .then(data => {
         let map = new Map();
-        map.setMap(e[0]['coordinates'].lat, e[0]['coordinates'].lng)
-        addRoutesOnMap(e[0], map.getMap())
-    })
+        map.setMap(data[0]['coordinates'].lat, data[0]['coordinates'].lng);
+        map.addRoutes(data[0]);
+})
