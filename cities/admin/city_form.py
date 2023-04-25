@@ -1,11 +1,12 @@
 from django import forms
 
-from cities.models import Route
+from cities.models import City
 
 class CityAdminForm(forms.ModelForm):
     class Meta:
-        model = Route
+        model = City
         fields = '__all__'
         widgets = {
-            'authors': forms.CheckboxSelectMultiple
+            'routes': forms.CheckboxSelectMultiple,
+            'points': forms.CheckboxSelectMultiple
         }
