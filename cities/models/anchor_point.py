@@ -12,6 +12,10 @@ class AnchorPoint(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Tipo do comérico')
     active = models.BooleanField(default=False, verbose_name="Ativo")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
+    
+    def get_anchor_points(self):
+        data = AnchorPoint.objects.all()
+        return data
     
