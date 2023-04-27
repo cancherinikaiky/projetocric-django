@@ -22,7 +22,7 @@ class HomeData(generics.ListAPIView):
                         'id': route.id,
                         'name': route.name,
                         'id_route': route.id_route,
-                        'polilyne': route.polyline,
+                        'polyline': route.polyline,
                     }
                     routes.append(route_data)
                 for point in city_points:
