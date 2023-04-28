@@ -4,6 +4,7 @@ import { Urls } from "../helpers/urls.js";
 fetch(Urls.home_cities)
     .then(res => res.json())
     .then(data => {
+        console.log(data)
         let map = new Map();
         map.setMap(data[0]['coordinates'].lat, data[0]['coordinates'].lng);
         map.addRoutes(data[0]);

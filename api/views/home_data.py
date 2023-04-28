@@ -3,6 +3,7 @@ from rest_framework import generics
 from api.serializers import HomeSerializer
 from home.models import Home
 from cities.models import City
+from cities.models.anchor_point import AnchorPoint
 
 class HomeData(generics.ListAPIView):
     queryset = Home.objects.all()
@@ -26,11 +27,16 @@ class HomeData(generics.ListAPIView):
                     }
                     routes.append(route_data)
                 for point in city_points:
-                    point_data = {
+                    if isinstance(point, AnchorPoint):
+                        point_data = {
                         'id': point.id,
                         'name': point.name,
-                        'phone': point.phone
-                    }
+                        'lat': point.lat,
+                        'lng': point.lng,
+                        'category': point.category,
+                        'phone': point.phone,
+                        'address': point.address
+                        }
                     points.append(point_data)
             home.routes = routes
             home.points = points

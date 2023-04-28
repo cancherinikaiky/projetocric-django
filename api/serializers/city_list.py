@@ -8,6 +8,7 @@ class CitySerializer(serializers.ModelSerializer):
     routes = RouteSerializer(many=True)
     points = AnchorPointSerializer(many=True)
     coordinates = serializers.SerializerMethodField()
+    
     class Meta:
         model = City
         fields = ('id', 'name', 'coordinates', 'banner_photo', 'routes', 'points')
