@@ -11,8 +11,14 @@ class AnchorPointSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AnchorPoint
-        fields = ('id', 'name', 'coordinates', 'category', 'phone', 'address')
+        fields = ('id', 'name',  'coordinates', 'category', 'phone', 'address')
 
     def get_coordinates(self, obj):
-        return {'lat': obj.lat, 'lng': obj.lng}
+        print("É DICIONÁRIO: ", type(obj))
+        try:
+            #FOR DICT
+            return {'lat': obj['lat'], 'lng': obj['lng']}
+        except TypeError:
+            #FOR INSTANCE OF ANCHORPOINT
+            return {'lat': obj.lat, 'lng': obj.lng}
     
