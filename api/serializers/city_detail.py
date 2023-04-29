@@ -12,7 +12,7 @@ class CityDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = City
-        fields = ('id', 'name', 'coordinates', 'routes', 'points')
+        fields = ('id', 'name', 'banner_image', 'coordinates', 'routes', 'points')
 
     def get_coordinates(self, obj):
         return {'lat': obj.lat, 'lng': obj.lng}

@@ -14,7 +14,7 @@ export class Map {
   addRoutes(e) {
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
-                    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong>ROTACRIC</strong>',
+                    '&copy; <strong>ROTACRIC</strong>',
     }).addTo(this.map);
 
     e.routes.forEach(e => {
@@ -33,7 +33,7 @@ export class Map {
     
     e.points.forEach(element => {
     const newIcon = new L.Icon({
-                        iconUrl: element.category.photo,
+                        iconUrl: element.category.image,
                         iconSize: [30, 40],
                         iconAnchor: [5, 30],
                         popupAnchor: [10, -20]

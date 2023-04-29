@@ -5,4 +5,4 @@ from cities.models import Category
 class CategoryPointSerializer(serializers.ModelSerializer):
     class Meta:
         model =  Category
-        fields = ('name','photo')
+        fields = ('name', 'image')
