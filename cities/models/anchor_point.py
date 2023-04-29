@@ -3,7 +3,9 @@ from cities.models.address_point import Address
 from cities.models.category_point import Category
 
 class AnchorPoint(models.Model):
+    PATH_IMAGES_ANCHOR_POINTS = 'cities/anchor_points/photos/%Y/%m/%d'
     name = models.CharField(max_length=100, verbose_name='Nome')
+    image = models.ImageField(upload_to=PATH_IMAGES_ANCHOR_POINTS, verbose_name='Imagem do ponto de apoio')
     lat = models.CharField(max_length=20, verbose_name='Latitude')
     lng = models.CharField(max_length=20, verbose_name='Longitude')
     business_hours = models.CharField(max_length=120, verbose_name='Horário de funcionamento')
