@@ -1,4 +1,5 @@
 export class Map {
+
   constructor() {
     this.map = null;
   }
@@ -31,50 +32,31 @@ export class Map {
     })
 
     
-    e.points.forEach(element => {
-    const newIcon = new L.Icon({
-                        iconUrl: element.category.image,
-                        iconSize: [30, 40],
-                        iconAnchor: [5, 30],
-                        popupAnchor: [10, -20]
-                    })
+    e.points.forEach(({ coordinates, name, category, image, address, business_hours, phone }) => {
+      const iconUrl = category?.image ?? '/default-icon.png';
 
-    L.marker([element.coordinates['lat'], element.coordinates['lng']],{icon: newIcon})
-            .bindPopup(`
-            ${bindPopupName(element.name)} 
-            ${bindPopupImage(element.image)}
-            ${bindPopupAddress(element.address)}
-            ${bindPopupOpeningHours(element.business_hours)}
-            ${bindPopupPhone(element.phone)}
-            `,{
-            maxWidth: 150,
-            keepInView: true,
-            className: "markerPopup"
-            })
-            .addTo(this.map)
-    })
+      const newIcon = new L.Icon({
+        iconUrl,
+        iconSize: [30, 40],
+        iconAnchor: [5, 30],
+        popupAnchor: [10, -20]
+      });
+
+      const popupContent = `
+        <h1>${name}</h1>
+        ${image ? `<img src=${image}>` : `<p>Foto não informada</p>`}
+        <p>Endereço: ${address.street_name}, ${address.number}, ${address.neighborhood}</p>
+        <p>Horário de atendimento: ${business_hours}</p>
+        <p>Contato: ${phone}</p>
+      `;
+
+      L.marker([coordinates.lat, coordinates.lng], { icon: newIcon })
+        .bindPopup(popupContent, {
+          maxWidth: 150,
+          keepInView: true,
+          className: 'markerPopup'
+        })
+        .addTo(this.map);
+    });
   }
-}
-
-const bindPopupName = (name) => {
-    return `<h1>${name}</h1>`;
-}
-
-const bindPopupImage = (image) => {
-    if(image == null) {
-        return `<p>Foto não informada</p>`
-    }
-    return `<img src=${image}>`;
-}
-
-const bindPopupAddress = (address) => {
-    return `<p>Endereço: ${address.street_name}, ${address.number}, ${address.neighborhood}</p>`;
-}
-
-const bindPopupOpeningHours = (hours) => {
-    return `<p>Horário de atendimento: ${hours}</p>`;
-}
-
-const bindPopupPhone = (phone) => {
-    return `<p>Contato: ${phone}</p>`;
 }
