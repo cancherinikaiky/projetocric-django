@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'about.apps.AboutConfig',
     'manual.apps.ManualConfig',
     'contact.apps.ContactConfig',
+    'event.apps.EventConfig',
     'rest_framework',
     'multiupload',
 ]
