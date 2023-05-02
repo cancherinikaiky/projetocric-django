@@ -6,8 +6,8 @@ _pycache_
 db.sqlite3
 media
 
-# GIT #
-key_git*
+key_git
+key_git.pub
 
 # Backup files # 
 *.bak 
