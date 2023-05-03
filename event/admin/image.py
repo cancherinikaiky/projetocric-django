@@ -5,4 +5,4 @@ from event.models.image import Image
 class ImageAdmin(admin.StackedInline):
     model = Image
 
-admin.site.register(Image)
+# admin.site.register(Image)

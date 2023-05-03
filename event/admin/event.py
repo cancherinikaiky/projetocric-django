@@ -20,3 +20,4 @@ class EventAdmin(admin.ModelAdmin):
         model = Event
 
 admin.site.register(Event, EventAdmin)
+

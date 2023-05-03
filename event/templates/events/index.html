@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de eventos</title>
+</head>
+<body>
+    <p>{{ event.description }}</p>
+    {% for route in event.routes.all %}
+        <p>{{ route }}</p>
+    {% endfor %}
+
+    {% for image in event.images.all %}
+        <img src=" {{ image.image.url }} " style="width: 300px; height: 300px;">
+    {% endfor %}
+
+
+    <div id="map" stytle="widht: 600px; height: 900px"></div>
+
+    <script src="{% static 'js/events/data.js'%}"></script>
+    <script src="{% static 'js/map/Polyline.encoded.js' %}"></script>
+</body>
+</html>

@@ -5,3 +5,4 @@ from .anchor_point import *
 from .home import *
 from .category_point import *
 from .address_point import *
+from .event import *
