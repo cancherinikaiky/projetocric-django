@@ -6,3 +6,5 @@ class Image(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to=PATH_IMAGES_EVENT)
 
+    def __str__(self):
+        return self.image.name

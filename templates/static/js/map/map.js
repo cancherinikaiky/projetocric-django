@@ -6,19 +6,23 @@ export class Map {
 
   setMap(lat, lng) {
     this.map = L.map('map', {scrollWheelZoom: false}).setView([lat, lng], 12);
+
+    this.startMap()
   }
 
   getMap() {
     return this.map; 
   }
 
-  addRoutes(e) {
+  startMap(){
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
                   attribution:
                     '&copy; <strong>ROTACRIC</strong>',
     }).addTo(this.map);
+  }
 
-    e.routes.forEach(e => {
+  addRoutes(routes) {
+    routes.forEach(e => {
       var coordinates = L.Polyline.fromEncoded(
       e.polyline
     ).getLatLngs();
@@ -30,8 +34,10 @@ export class Map {
       lineJoin: "round",
     }).addTo(this.map);
     })
+  }
 
-    if(e.points){e.points.forEach(({ coordinates, name, category, image, address, business_hours, phone }) => {
+  addPoints(points) {
+    points.forEach(({ coordinates, name, category, image, address, business_hours, phone }) => {
       const iconUrl = category?.image ?? '/default-icon.png';
 
       const newIcon = new L.Icon({
@@ -57,32 +63,5 @@ export class Map {
         })
         .addTo(this.map);
     });
-      e.points.forEach(({ coordinates, name, category, image, address, business_hours, phone }) => {
-        const iconUrl = category?.image ?? '/default-icon.png';
-  
-        const newIcon = new L.Icon({
-          iconUrl,
-          iconSize: [30, 40],
-          iconAnchor: [5, 30],
-          popupAnchor: [10, -20]
-        });
-  
-        const popupContent = `
-          <h1>${name}</h1>
-          ${image ? `<img src=${image}>` : `<p>Foto não informada</p>`}
-          <p>Endereço: ${address.street_name}, ${address.number}, ${address.neighborhood}</p>
-          <p>Horário de atendimento: ${business_hours}</p>
-          <p>Contato: ${phone}</p>
-        `;
-  
-        L.marker([coordinates.lat, coordinates.lng], { icon: newIcon })
-          .bindPopup(popupContent, {
-            maxWidth: 150,
-            keepInView: true,
-            className: 'markerPopup'
-          })
-          .addTo(this.map);
-      });
-    }
   }
 }

@@ -9,5 +9,5 @@ fetch(url_api)
 .then(data => {
     let map = new Map();
     map.setMap(data.coordinates.lat, data.coordinates.lng);
-    map.addRoutes(data);
+    map.addRoutes(data.routes);
 })
