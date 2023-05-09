@@ -26,9 +26,10 @@ export class Map {
       var coordinates = L.Polyline.fromEncoded(
       e.polyline
     ).getLatLngs();
+
         
     L.polyline(coordinates, {
-      color: "red",
+      color: e.color,
       weight: 4,
       opacity: 1,
       lineJoin: "round",

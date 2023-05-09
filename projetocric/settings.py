@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'event.apps.EventConfig',
     'rest_framework',
     'multiupload',
+    'colorfield',
 ]
 
 MIDDLEWARE = [
