@@ -1,5 +1,5 @@
 from django import forms
-from event.models import Enrollment, Bond
+from event.models import Enrollment, Bond, Event
 
 
 
@@ -8,7 +8,7 @@ class EnrollmentForm(forms.ModelForm):
 
     class Meta:
         model = Enrollment
-        fields = ('full_name', 'date_of_birth', 'bond_choice', 'how_knew', 'rg', 'route')
+        fields = '__all__'
 
     def clean_rg(self):
         rg = self.cleaned_data['rg']

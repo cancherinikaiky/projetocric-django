@@ -1,5 +1,8 @@
 from django.db import models
 
+from event.models.how_knew import HowKnew
+from event.models import Event
+
 
 class Bond(models.Model):
     name = models.CharField(max_length=100)
@@ -8,12 +11,12 @@ class Bond(models.Model):
         return self.name
     
 class Enrollment(models.Model):
-    full_name = models.CharField(max_length=100)
-    date_of_birth = models.DateField()
-    bond_choice = models.ForeignKey(Bond, on_delete=models.CASCADE)
-    how_knew = models.CharField(max_length=100)
-    rg = models.CharField(max_length=100)
-    route = models.CharField(max_length=100)
+    full_name = models.CharField(max_length=100, verbose_name='Nome Completo')
+    date_of_birth = models.DateField(verbose_name='Data de Nascimento')
+    bond_choice = models.ForeignKey(Bond, on_delete=models.CASCADE, verbose_name='Categoria')
+    how_knew = models.ForeignKey(HowKnew, on_delete=models.CASCADE, verbose_name='Como soube do evento?')
+    rg = models.CharField(max_length=10, verbose_name='RG')
+    route = models.ForeignKey(Event, on_delete=models.CASCADE, verbose_name='Trajeto desejado')
 
     def __str__(self):
         return self.full_name
@@ -23,3 +26,4 @@ class Enrollment(models.Model):
             return self.bond_choice.upper()
         else:
             return "-"
+    
