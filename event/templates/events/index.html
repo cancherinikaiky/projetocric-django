@@ -42,9 +42,16 @@
       <button type="submit">Enroll</button>
     </form>
 
+    {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
 
     <script src="{% static 'js/events/data.js'%}" type="module" async></script>
     <script src="{% static 'js/map/Polyline.encoded.js' %}"></script>
-    <script src="{% static 'js/Helpers/verify_form.js' %}"></script>
+    <script src="{% static 'js/helpers/verify_form.js' %}"></script>
 </body>
 </html>

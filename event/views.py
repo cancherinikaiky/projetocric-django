@@ -8,6 +8,8 @@ from cities.models import Route
 from django.shortcuts import render, redirect
 from event.models import EnrollmentForm
 
+from django.contrib import messages
+
 
 class EventView(DetailView):
     model = Event
@@ -25,6 +27,7 @@ def enrollment(request, event_id):
         form = EnrollmentForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Enrollment successful!')
             return redirect('events:event', pk=event.pk)
     else:
         form = EnrollmentForm()
