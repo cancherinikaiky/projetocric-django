@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
 
-from event.models import Event
+from event.models import Event, Bond, HowKnew, Enrollment
+
+from cities.models import Route
 
 from django.shortcuts import render, redirect
 from event.models import EnrollmentForm
@@ -27,5 +29,6 @@ def enrollment(request, event_id):
     else:
         form = EnrollmentForm()
     context = {'event': event, 'form': form}
+    
     return render(request, 'events/index.html', context)
 

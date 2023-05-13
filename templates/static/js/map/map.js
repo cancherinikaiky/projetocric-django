@@ -30,7 +30,7 @@ export class Map {
         
     L.polyline(coordinates, {
       color: e.color,
-      weight: 4,
+      weight: 3,
       opacity: 1,
       lineJoin: "round",
     }).addTo(this.map);
