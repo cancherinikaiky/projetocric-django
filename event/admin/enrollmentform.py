@@ -1,9 +1,13 @@
 from django import forms
-import re
 from event.models import Enrollment
+from event.models.route_path import RoutePath
 
 
 class EnrollmentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['route_path'].queryset = RoutePath.objects.filter(active=True)
+
     class Meta:
         model = Enrollment
         fields = '__all__'

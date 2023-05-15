@@ -23,9 +23,3 @@ class Enrollment(models.Model):
     def __str__(self):
         return self.full_name
     
-    def get_bond_choice_display(self):
-        if isinstance(self.bond_choice, str):
-            return self.bond_choice.upper()
-        else:
-            return "-"
-    
