@@ -66,41 +66,45 @@ export class Map {
     });
   }
 
-  setButtons(routes){
-    var btns = document.querySelectorAll('.btnOpacity')
-    btns.forEach(button => {
+  writeRoutes(routes) {
+    var btns = document.querySelectorAll('.btnOpacity');
+    var currentRoute = null;
+  
+    btns.forEach((button) => {
       button.addEventListener('click', () => {
         var routeId = button.getAttribute('data-route');
-        this.changeOpacity(routeId, routes);
+        var selectedRoute = this.getRouteById(routes, routeId);
+  
+        if (selectedRoute) {
+          if (currentRoute) {
+            this.updateOpacity(currentRoute, 0);
+          }
+  
+          this.updateOpacity(selectedRoute, 1);
+          currentRoute = selectedRoute;
+        }
       });
     });
   }
-
-  changeOpacity(routeId, routes) {
-    let route;  
-    for (var i = 0; i < routes.length; i++) {
-      if (routes[i].id_route === routeId) {
-        route = routes[i];
-        break;
-      }
-    }
   
-    if (route) {
-      let coordinates = L.Polyline.fromEncoded(
-        route.polyline
-      ).getLatLngs();
-      console.log(coordinates)
-
-      L.polyline(coordinates, {
-        color: route.color,
-        weight: 3,
-        opacity: 1,
-        lineJoin: "round"
-      }).addTo(this.map)
-    }
+  getRouteById(routes, routeId) {
+    return routes.find((route) => route.id_route === routeId);
   }
   
-
+  updateOpacity(route, opacityValue) {
+    if (route.polylineLayer && this.map.hasLayer(route.polylineLayer)) {
+      this.map.removeLayer(route.polylineLayer);
+    }
+  
+    var coordinates = L.Polyline.fromEncoded(route.polyline).getLatLngs();
+    route.polylineLayer = L.polyline(coordinates, {
+      color: route.color,
+      weight: 3,
+      opacity: opacityValue,
+      lineJoin: "round"
+    }).addTo(this.map);
+  }
+  
   addPointsEvent(points) {
     points.forEach(({ coordinates, title, description, iconUrl}) => {
 

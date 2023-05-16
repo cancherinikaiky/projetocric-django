@@ -17,6 +17,6 @@ fetch(url_api)
     })
     map.addRoutes(arr, 0)
     map.addPointsEvent(data.points)
-    map.setButtons(arr);
+    map.writeRoutes(arr);
     // map.changeOpacity(arr) //'3007668662019916668'
 })
