@@ -15,6 +15,8 @@ fetch(url_api)
     data.routes_data.forEach((e) => {
         arr.push(e.route)
     })
-    map.addRoutes(arr)
+    map.addRoutes(arr, 0)
     map.addPointsEvent(data.points)
+    map.setButtons(arr);
+    // map.changeOpacity(arr) //'3007668662019916668'
 })

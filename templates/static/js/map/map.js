@@ -21,21 +21,20 @@ export class Map {
     }).addTo(this.map);
   }
 
-  addRoutes(routes) {
+  //add parameter opacity = 1 || 0
+  addRoutes(routes, opacity=1) {
     routes.forEach(e => {
       var coordinates = L.Polyline.fromEncoded(
       e.polyline
     ).getLatLngs();
 
-        
     L.polyline(coordinates, {
       color: e.color,
       weight: 3,
-      opacity: 1,
+      opacity: opacity,
       lineJoin: "round",
     }).addTo(this.map);
     })
-
   }
 
   addPoints(points) {
@@ -66,6 +65,41 @@ export class Map {
         .addTo(this.map);
     });
   }
+
+  setButtons(routes){
+    var btns = document.querySelectorAll('.btnOpacity')
+    btns.forEach(button => {
+      button.addEventListener('click', () => {
+        var routeId = button.getAttribute('data-route');
+        this.changeOpacity(routeId, routes);
+      });
+    });
+  }
+
+  changeOpacity(routeId, routes) {
+    let route;  
+    for (var i = 0; i < routes.length; i++) {
+      if (routes[i].id_route === routeId) {
+        route = routes[i];
+        break;
+      }
+    }
+  
+    if (route) {
+      let coordinates = L.Polyline.fromEncoded(
+        route.polyline
+      ).getLatLngs();
+      console.log(coordinates)
+
+      L.polyline(coordinates, {
+        color: route.color,
+        weight: 3,
+        opacity: 1,
+        lineJoin: "round"
+      }).addTo(this.map)
+    }
+  }
+  
 
   addPointsEvent(points) {
     points.forEach(({ coordinates, title, description, iconUrl}) => {

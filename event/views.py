@@ -7,6 +7,8 @@ from cities.models import Route
 
 from django.shortcuts import render, redirect
 from event.models import EnrollmentForm
+from event.models.enrollment import Bond
+from event.models.how_knew import HowKnew
 
 from django.contrib import messages
 
@@ -19,6 +21,8 @@ class EventView(DetailView):
         context = super().get_context_data(**kwargs)
         context['event'] = Event.objects.get(pk=self.kwargs['pk'])
         context['form'] = EnrollmentForm
+        context['bond'] = Bond.objects.all()
+        context['howKnew'] = HowKnew.objects.all()
         return context
 
 def enrollment(request, event_id):
