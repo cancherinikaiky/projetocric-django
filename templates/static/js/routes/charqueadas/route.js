@@ -60,7 +60,7 @@ const dataRoutes = [
             icon: markerIcons.food,
             name: "Empório Pasteis",
             image: '../../static/images/photosMarkers/charqueadas/emporio_pasteis.jpeg',
-            address: "Av. Getúlio Vargas, 36",
+            address: "Av. Getúlio Vargas, 36 - Centro",
             openingHours: "17:30h às 00:30h",
             phone: "(51) 98458-2942"
           },

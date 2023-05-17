@@ -10,3 +10,9 @@ class CityAdminForm(forms.ModelForm):
             'routes': forms.CheckboxSelectMultiple,
             'points': forms.CheckboxSelectMultiple
         }
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+        if City.objects.filter(name=name).exists():
+            raise forms.ValidationError('NOME já registrado')
+        return name

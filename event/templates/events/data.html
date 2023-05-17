@@ -29,7 +29,7 @@
     {% endfor %}
 
     {% for howKnew in howKnew %}
-      <p>{{ howKnew }}</p>
+      <p> COMO SOUBE {{ howKnew }} - {{ howKnew.id }}</p>
     {% endfor %}
 
     {% for e in event.routes_data.all %}
@@ -55,7 +55,7 @@
     <div id="map" style="width: 600px; height: 900px;"></div>
 
     {% for e in event.routes_data.all %}
-      <button data-route="{{ e.route.id_route }}" class="btnOpacity">{{ e }}</button>
+      <button data-route="{{ e.route.id_route }}" class="btnOpacity" style="background-color: '{{ e.route.color }}';">{{ e }}</button>
     {% endfor %}
 
     <h1>Enrollment Form</h1>
