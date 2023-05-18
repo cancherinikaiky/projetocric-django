@@ -78,10 +78,13 @@ export class Map {
         if (selectedRoute) {
           if (currentRoute) {
             this.updateOpacity(currentRoute, 0);
+            currentRoute.button.style.backgroundColor = '';
           }
   
           this.updateOpacity(selectedRoute, 1);
           currentRoute = selectedRoute;
+          button.style.backgroundColor = selectedRoute.color; 
+          currentRoute.button = button; 
         }
       });
     });
@@ -104,6 +107,7 @@ export class Map {
       lineJoin: "round"
     }).addTo(this.map);
   }
+  
   
   addPointsEvent(points) {
     points.forEach(({ coordinates, title, description, iconUrl}) => {
