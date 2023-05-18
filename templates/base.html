@@ -38,9 +38,6 @@
   >
 
   <!-- INDEX STYLE  -->
-
-  {% comment %} Troquei o link do Index antigo para o index_r {% endcomment %}
-
   <link 
     rel="stylesheet" 
     href="{% static 'style/style-index-r.css'%}"
@@ -109,25 +106,11 @@
                 <div class="container">
                   <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#"
                       class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-    
                   <ul class="site-menu main-menu js-clone-nav d-none d-lg-block">
-    
-                    <li class="active">
-                      <a href="{% url 'sobre' %}" class="nav-link">Sobre</a>
-                    </li>
-    
-                    <li>
-                      <a href="{% url 'manual' %}" class="nav-link">Manual</a>
-                    </li>
     
                     <li>
                       <a href="#cities" class="nav-link">Municípios</a>
                     </li>
-    
-                    <li>
-                      <a href="{% url 'contato' %}" class="nav-link">Contato</a>
-                    </li>
-    
                   </ul>
                 </div>
               </nav>

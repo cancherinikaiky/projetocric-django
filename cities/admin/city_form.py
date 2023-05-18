@@ -1,6 +1,7 @@
 from django import forms
 
 from cities.models import City
+from projetocric.utilities import validate_field
 
 class CityAdminForm(forms.ModelForm):
     class Meta:
@@ -12,7 +13,4 @@ class CityAdminForm(forms.ModelForm):
         }
 
     def clean_name(self):
-        name = self.cleaned_data['name']
-        if City.objects.filter(name=name).exists():
-            raise forms.ValidationError('NOME já registrado')
-        return name
+        return validate_field(self, City, 'name', 'NOME já cadastrado!')

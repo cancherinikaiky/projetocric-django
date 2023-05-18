@@ -8,7 +8,7 @@ media
 
 key_git
 key_git.pub
-data.txt
+.data
 
 # Backup files # 
 *.bak 

@@ -1,6 +1,8 @@
 from django import forms
 from colorfield.widgets import ColorWidget
 
+from projetocric.utilities import validate_field
+
 
 from cities.models import Route
 
@@ -10,13 +12,8 @@ class RouteAdminForm(forms.ModelForm):
     }
 
     def clean_name(self):
-        name = self.cleaned_data['name']
-        if Route.objects.filter(name=name).exists():
-            raise forms.ValidationError('NOME já registrado')
-        return name
+        return validate_field(self, Route, 'name', 'NOME da rota já cadastrada!')
     
     def clean_id_route(self):
-        id_route = self.cleaned_data['id_route']
-        if Route.objects.filter(id_route=id_route).exists():
-            raise forms.ValidationError('ID_ROUTE já registrado')
-        return id_route
+        return validate_field(self, Route, 'id_route', 'ID da rota já cadastrado!')
+    
