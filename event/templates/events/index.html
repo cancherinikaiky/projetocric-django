@@ -133,14 +133,6 @@
     {% endfor %}
   </select>
 
-  <!-- SELECT BOND CHOICE -->
-  {% comment %} <select class="form-select mb-3" name="bond_choice" required id="id_bond_choice">
-    <option value="" {% if not form.bond_choice.value %}selected{% endif %} disabled>Sobre Você</option>
-    {% for bond in bond %}
-      <option value="{{ bond.id }}" {% if form.bond_choice.value == bond.id %}selected{% endif %}>{{ bond }}</option>
-    {% endfor %}
-  </select> {% endcomment %}
-
   <!-- SELECT HOW KNEW -->
   <select class="form-select mb-3" name="how_knew" required id="id_how_knew">
     <option value selected disabled>Como soube?</option>
