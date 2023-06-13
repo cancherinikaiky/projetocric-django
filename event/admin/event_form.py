@@ -1,6 +1,6 @@
 from django import forms
-
 from event.models import Event
+
 
 class EventForm(forms.ModelForm):
 
@@ -12,3 +12,4 @@ class EventForm(forms.ModelForm):
             'routes_data': forms.CheckboxSelectMultiple,
             'warnings': forms.CheckboxSelectMultiple,
         }
+        

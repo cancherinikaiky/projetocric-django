@@ -77,10 +77,6 @@
           {% for bond_obj in bond %}
             <option value="{{ bond_obj.id }}" {% if bond_obj.id == enrollment.bond_choice %}selected{% endif %}>{{ bond_obj }}</option>
           {% endfor %}
-
-          {% for bond_obj in bond %}
-            <option value="{{ bond_obj.id }}">{{ bond_obj }}</option>
-          {% endfor %}
         </select>
       
         <!-- SELECT HOW KNEW -->
@@ -89,10 +85,6 @@
           {% for howKnew_obj in howKnew %}
             <option value="{{ howKnew_obj.id }}" {% if howKnew_obj.id == enrollment.how_knew %}selected{% endif %}>{{ howKnew_obj }}</option>
           {% endfor %}
-
-          {% for howKnew_obj in howKnew %}
-            <option value="{{ howKnew_obj.id }}">{{ howKnew_obj }}</option>
-          {% endfor %}
         </select>
       
         <!-- SELECT ROUTE PATH -->
@@ -100,10 +92,6 @@
           <option value="" disabled>Caminho da Rota</option>
           {% for routePath_obj in routePath %}
             <option value="{{ routePath_obj.id }}" {% if routePath_obj.id == enrollment.route_path %}selected{% endif %}>{{ routePath_obj }}</option>
-          {% endfor %}
-
-          {% for routePath_obj in routePath %}
-            <option value="{{ routePath_obj.id }}">{{ routePath_obj }}</option>
           {% endfor %}
         </select>
       
