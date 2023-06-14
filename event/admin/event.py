@@ -1,10 +1,10 @@
 from django.contrib import admin
-
 from event.models import Event
 from event.admin.event_form import EventForm
 from event.admin.image import ImageAdmin
 from event.models.anchor_point import AnchorPoint
 from event.models.route_path import RoutePath
+
 
 class EventAdmin(admin.ModelAdmin):
     form = EventForm
