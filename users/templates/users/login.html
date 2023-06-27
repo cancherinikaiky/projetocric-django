@@ -61,7 +61,7 @@
 <body>
     <div class="container">
         <h1>Login</h1>
-        <form id="frm-login" method="POST" action="{% url 'users:login' %}">
+        <form id="frm-login" method="POST" action="{% url 'users:login' pk=event.id %}">
             {% csrf_token %}
             <input type="text" placeholder="Email" name="email">
             <input type="password" placeholder="Senha" name="password">
