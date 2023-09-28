@@ -12,58 +12,72 @@ from django.views.decorators.csrf import csrf_exempt
 from PIL import Image as PILImage
 from io import BytesIO
 from django.core.files.uploadedfile import SimpleUploadedFile
+from rest_framework.decorators import api_view
 
-
-
-def register(request):
+def check_session(request):
     if request.session.get('user_id'):
         return redirect('users:profile')
+    return False
 
-    if request.method != 'POST':
-        return render(request, 'users/register.html')
-    
-    username = request.POST.get('username')
-    first_name = request.POST.get('first_name')
-    last_name = request.POST.get('last_name')
-    email = request.POST.get('email')
-    password = request.POST.get('password')
-    password_confirm = request.POST.get('password_confirm')
+def push_data(request):
+    return {
+        'username' : request.POST.get('username'),
+        'first-name' : request.POST.get('first_name'),
+        'last_name' : request.POST.get('last_name'),
+        'email' : request.POST.get('email'),
+        'password' : request.POST.get('password'),
+        'password_confirm' : request.POST.get('password_confirm')
+    }
 
-    if not username or not first_name or not last_name or not email or not password or not password_confirm:
-        messages.error(request, 'Todos os campos devem ser preenchidos!')
-        return render(request, 'users/register.html')
-
+def validations(request, user):
     try:
-        validate_email(email)
+        validate_email(user.email)
     except:
         messages.error(request, 'Email já cadastrado!')
-        return render(request, 'users/register.html')
     
-    if password != password_confirm:
+    if user.password != user.password_confirm:
         messages.error(request, 'As senhas informadas são diferentes!')
-        return render(request, 'users/register.html')
 
-    if len(password) < 8:
+    if len(user.password) < 8:
         messages.error(request, 'As senhas devem conter mais que 8 caracteres!')
-        return render(request, 'users/register.html')
 
-    if User.objects.filter(username=username).exists():
+    if User.objects.filter(username=user.username).exists():
         messages.error(request, 'Username já cadastrado!')
-        return render(request, 'users/register.html')
-
-    user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
-    user.save()
-
-    messages.success(request, 'Usuario cadastrado com sucesso!')
-
-    user = auth.authenticate(request, email=email, password=password)
     
-    if not user:
-        return render(request, 'users/register.html')
-    else:
-        auth.login(request, user)
-        request.session['user_id'] = user.id
-        return redirect('users:edit_user', user_id=user.id)
+    if messages.error == '':
+        return True
+    
+    return render(request, 'users/register.html')
+
+@api_view(['GET'])
+def register(request):
+    return render(request, 'users/register.html')
+
+
+@api_view(['POST'])
+def register(request):
+    if not check_session(request):
+        user = push_data(request)
+
+        for data in user:
+            if data == '':
+                messages.error(request, 'Todos os campos devem ser preenchidos!')
+                return render(request, 'users/register.html')
+
+        if validations(request, user):
+            user_model = User.objects.create_user(username=user.username, email=user.email, password=user.password, first_name=user.first_name, last_name=user.last_name)
+            user_model.save()
+
+            messages.success(request, 'Usuario cadastrado com sucesso!')
+
+            user_model = auth.authenticate(request, email=user.email, password=user.password)
+            
+            if not user_model:
+                return render(request, 'users/register.html')
+            else:
+                auth.login(request, user_model)
+                request.session['user_id'] = user_model.id
+                return redirect('users:edit_user', user_id=user_model.id)
 
 def login(request):
     if request.session.get('user_id'):

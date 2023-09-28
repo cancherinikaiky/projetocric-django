@@ -97,7 +97,6 @@ def enrollment2(request, event_id):
     
     return render(request, 'events/index.html', context)
 
-
 def download_pdf(request, event_id):
     event = get_object_or_404(Event, id=event_id)
     if event.pdf_file:
